@@ -1,0 +1,30 @@
+h1 {
+  background-color: aqua;
+}
+
+.textorojo {
+  color: red;
+}
+
+table {
+  border: 1px solid black;
+  width: 100%; /* Ancho completo de la tabla */
+  border-collapse: collapse; /* Para fusionar bordes */
+  margin-top: 10px;
+}
+
+th {
+  border: 1px solid black;
+  background-color: #f2f2f2; /* Fondo gris claro para las cabeceras */
+  padding: 8px; /* Espaciado interno en celdas de cabecera */
+}
+
+td {
+  border: 1px solid black;
+  padding: 8px; /* Espaciado interno en celdas de datos */
+}
+
+/* Estilos alternos para filas */
+tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Fondo gris claro para filas impares */
+}
