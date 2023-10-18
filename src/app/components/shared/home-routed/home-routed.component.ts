@@ -1,5 +1,5 @@
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
 
 interface IIndividuo { nombre: string; edad: number; sexo: string };
 
@@ -15,14 +15,14 @@ interface IUser {
   replies: number
 }
 
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home-routed',
+  templateUrl: './home-routed.component.html',
+  styleUrls: ['./home-routed.component.css']
 })
 
-export class AppComponent {
+export class HomeRoutedComponent implements OnInit {
+
   title: string = 'phosphorum';
   datos: IUser = { id: 0, name: "", surname: "", lastname: "", email: "", username: "", role: false, threads: 0, replies: 0 };
   urlimagen: string = "https://estaticos-cdn.sport.es/clip/885c9147-8b6a-4bc9-8937-aa27780bfabd_media-libre-aspect-ratio_default_0.jpg";
@@ -79,6 +79,9 @@ export class AppComponent {
   constructor(
     private http: HttpClient
   ) { }
+  ngOnInit() {
+  }
+
 
   saludar(): void {
     alert("Hola");
@@ -105,3 +108,8 @@ export class AppComponent {
   }
 
 }
+
+
+
+
+

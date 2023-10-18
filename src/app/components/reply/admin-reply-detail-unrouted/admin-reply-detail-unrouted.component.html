@@ -1,0 +1,9 @@
+<h3>Componente hijo</h3>
+REPLY ID: <input type="text" [(ngModel)]="id" />
+<h2 *ngIf="id == 0">ERROR</h2>
+<div *ngIf="id > 0">
+  <p>Thread title: {{ datos.thread.title }}</p>
+  <p>User: {{ datos.user.username }}</p>
+  <p>Title: {{ datos.title }}</p>
+  <p>Body: {{ datos.body }}</p>
+</div>
