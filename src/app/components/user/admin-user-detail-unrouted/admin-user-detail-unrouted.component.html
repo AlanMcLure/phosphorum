@@ -1,7 +1,7 @@
 <h3>Componente hijo</h3>
 USER ID: <input type="text" [(ngModel)]="id" (ngModelChange)="onIdChange()" />
-<h2 *ngIf="id == 0">ERROR</h2>
-<div *ngIf="id > 0">
+<h2 *ngIf="errorOcurred">ERROR</h2>
+<div *ngIf="!errorOcurred && datos">
   <p>Name: {{ datos.name }}</p>
   <p>Surname: {{ datos.surname }}</p>
   <p>Last name: {{ datos.lastname }}</p>

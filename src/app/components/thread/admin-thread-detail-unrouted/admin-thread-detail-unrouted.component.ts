@@ -20,6 +20,7 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
 
   datos: IThread = { id: 0, title: "", user: { username: ""} };
   
+  errorOcurred: boolean = false;
 
   constructor(
     private http: HttpClient
@@ -42,6 +43,24 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
 
     })
 
+  }
+
+  onIdChange(): void {
+    if (!isNaN(this.id)) {
+      this.http.get(`http://localhost:8083/reply/${this.id}`).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.datos = data;
+          this.errorOcurred = false; // La solicitud se realizó con éxito, restablece el error a false
+        },
+        error: (error) => {
+          console.error("Error al cargar los datos de la respuesta", error);
+          this.errorOcurred = true; // Hubo un error, establece el error a true
+        }
+      });
+    } else {
+      this.errorOcurred = false; // Restablece el error a false si el valor no es un número válido
+    }
   }
 
 }

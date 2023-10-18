@@ -24,6 +24,8 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
   @Input() id: number = 1;
 
   datos: IUser = { id: 0, name: "", surname: "", lastname: "", email: "", username: "", role: false, threads: 0, replies: 0 };
+
+  errorOcurred: boolean = false;
   
 
   constructor(
@@ -49,22 +51,23 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
 
   }
 
-  onIdChange(): void { // Convierte el texto a un número entero
+  onIdChange(): void {
     if (!isNaN(this.id)) {
-      // Realiza una solicitud a la API con el ID ingresado
       this.http.get(`http://localhost:8083/user/${this.id}`).subscribe({
         next: (data: any) => {
           console.log(data);
-          this.datos = data; // Almacena los datos del usuario
+          this.datos = data;
+          this.errorOcurred = false; // La solicitud se realizó con éxito, restablece el error a false
         },
         error: (error) => {
           console.error("Error al cargar los datos del usuario", error);
+          this.errorOcurred = true; // Hubo un error, establece el error a true
         }
       });
     } else {
-      // Si el valor no es un número válido, borra los datos
-      
+      this.errorOcurred = false; // Restablece el error a false si el valor no es un número válido
     }
   }
+  
 
 }

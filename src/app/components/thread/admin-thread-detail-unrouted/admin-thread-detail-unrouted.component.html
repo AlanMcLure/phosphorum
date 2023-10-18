@@ -1,7 +1,7 @@
 <h3>Componente hijo</h3>
-THREAD ID: <input type="text" [(ngModel)]="id" />
-<h2 *ngIf="id == 0">ERROR</h2>
-<div *ngIf="id > 0">
+THREAD ID: <input type="text" [(ngModel)]="id" (ngModelChange)="onIdChange()" />
+<h2 *ngIf="errorOcurred == true">ERROR</h2>
+<div *ngIf="!errorOcurred && datos">
   <p>Title: {{ datos.title }}</p>
   <p>User: {{ datos.user.username }}</p>
 </div>
