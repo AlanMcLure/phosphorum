@@ -1,5 +1,5 @@
-<h2 *ngIf="id==0">ERROR</h2>
-<div *ngIf="id>0">
+<h2 *ngIf="id == 0">ERROR</h2>
+<div *ngIf="id > 0">
   <table>
     <tr>
       <th>Property</th>
@@ -7,15 +7,32 @@
     </tr>
     <tr>
       <td>id</td>
-      <td>{{datos.id}}</td>
+      <td>{{ datos.id }}</td>
     </tr>
     <tr>
       <td>title</td>
-      <td>{{datos.title}}</td>
+      <td>{{ datos.title }}</td>
     </tr>
     <tr>
       <td>user</td>
-      <td> <a [routerLink]="['/admin','user','view',datos.user.id]">{{datos.user.name}} {{datos.user.surname}}</a> </td>
+      <td>
+        <a [routerLink]="['/admin', 'user', 'view', datos.user.id]"
+          >{{ datos.user.name }} {{ datos.user.surname }}</a
+        >
+      </td>
     </tr>
   </table>
+  <div class="card">
+    <div class="header">
+      <div class="image"></div>
+      <div>
+        <p class="name">John Doe</p>
+      </div>
+    </div>
+
+    <p class="message">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
+      voluptatem alias ut provident sapiente repellendus.
+    </p>
+  </div>
 </div>
