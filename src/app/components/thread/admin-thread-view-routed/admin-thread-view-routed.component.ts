@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-interface IThread {
-  id: number;
-  title: string;
-  user: string;
-}
-
-
 @Component({
   selector: 'app-admin-thread-view-routed',
   templateUrl: './admin-thread-view-routed.component.html',
@@ -22,6 +15,7 @@ export class AdminThreadViewRoutedComponent implements OnInit {
   ) {
     this.id = parseInt(this.oActivatedRoute.snapshot.paramMap.get("id") || "1");
   }
+
 
   ngOnInit() {
   }
