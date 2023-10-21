@@ -6,6 +6,7 @@ import { AdminThreadViewRoutedComponent } from './components/thread/admin-thread
 import { AdminReplyViewRoutedComponent } from './components/reply/admin-reply-view-routed/admin-reply-view-routed.component';
 import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plist-routed/admin-user-plist-routed.component';
 import { AdminThreadPlistRoutedComponent } from './components/thread/admin-thread-plist-routed/admin-thread-plist-routed.component';
+import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-plist-routed/admin-reply-plist-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'admin/reply/view/:id', component: AdminReplyViewRoutedComponent },
   { path: 'admin/user/plist', component: AdminUserPlistRoutedComponent },
   { path: 'admin/thread/plist', component: AdminThreadPlistRoutedComponent },
-  { path: 'admin/reply/plist', component: AdminUserPlistRoutedComponent }
+  { path: 'admin/reply/plist', component: AdminReplyPlistRoutedComponent }
 ];
 
 @NgModule({

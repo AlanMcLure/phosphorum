@@ -4,11 +4,11 @@ import { PaginatorState } from 'primeng/paginator';
 import { IUserPage } from 'src/app/model/model.interface';
 
 @Component({
-  selector: 'app-admin-user-plist-unrouted',
-  templateUrl: './admin-user-plist-unrouted.component.html',
-  styleUrls: ['./admin-user-plist-unrouted.component.css']
+  selector: 'app-admin-reply-plist-unrouted',
+  templateUrl: './admin-reply-plist-unrouted.component.html',
+  styleUrls: ['./admin-reply-plist-unrouted.component.css']
 })
-export class AdminUserPlistUnroutedComponent implements OnInit {
+export class AdminReplyPlistUnroutedComponent implements OnInit {
 
   oPage: any = [];
   orderField: string = "id";
@@ -25,7 +25,7 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IUserPage>("http://localhost:8083/user" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+    this.oHttpClient.get<IUserPage>("http://localhost:8083/reply" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
       next: (data: IUserPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;

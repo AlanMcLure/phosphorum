@@ -5,25 +5,26 @@
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('name')">Name</th>
-          <th (click)="doOrder('surname')">Surname</th>
-          <th (click)="doOrder('lastname')">Last name</th>
-          <th (click)="doOrder('email')">Email</th>
-          <th (click)="doOrder('username')">Username</th>
-          <th (click)="doOrder('role')">Role</th>
+          <th (click)="doOrder('title')">Title</th>
+          <th (click)="doOrder('body')">Body</th>
+          <th (click)="doOrder('user')">User</th>
+          <th (click)="doOrder('thread')">Thread</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-u>
-        <tr [routerLink]="['/admin/user/view', u.id]">
+        <tr [routerLink]="['/admin/reply/view', u.id]">
           <td>{{ u.id }}</td>
-          <td>{{ u.name }}</td>
-          <td>{{ u.surname }}</td>
-          <td>{{ u.lastname }}</td>
-          <td>{{ u.email }}</td>
-          <td>{{ u.username }}</td>
+          <td>{{ u.title }}</td>
+          <td>{{ u.body }}</td>
           <td>
-            <span *ngIf="u.role == true">Admin</span>
-            <span *ngIf="u.role == false">User</span>
+            <a [routerLink]="['/admin/user/view', u.user.id]">
+              {{ u.user.username }}
+            </a>
+          </td>
+          <td>
+            <a [routerLink]="['/admin/thread/view', u.thread.id]">
+              {{ u.thread.title }}
+            </a>
           </td>
         </tr>
       </ng-template>

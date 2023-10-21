@@ -1,37 +1,40 @@
-<div class="card tabla">
-  <p-table [value]="datos.content" [tableStyle]="{ 'min-width': '50rem' }">
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th (click)="doOrder('id')">ID</th>
-        <th (click)="doOrder('title')">Title</th>
-        <th (click)="doOrder('username')">Username</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-u>
-      <tr [routerLink]="['/admin/thread/view', u.id]">
-        <td>{{ u.id }}</td>
-        <td>{{ u.title }}</td>
-        <td>
-          <a [routerLink]="['/admin/user/view', u.user.id]">
-            {{ u.user.username }}
-          </a>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+<h2 *ngIf="status != null">ERROR: {{ status.message }}</h2>
+<div *ngIf="status == null">
+  <div class="card tabla">
+    <p-table [value]="oPage.content" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th (click)="doOrder('id')">ID</th>
+          <th (click)="doOrder('title')">Title</th>
+          <th (click)="doOrder('user')">User</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-u>
+        <tr [routerLink]="['/admin/thread/view', u.id]">
+          <td>{{ u.id }}</td>
+          <td>{{ u.title }}</td>
+          <td>
+            <a [routerLink]="['/admin/user/view', u.user.id]">
+              {{ u.user.username }}
+            </a>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 
-<h3 class="resultado">
-  Showing {{ datos.numberOfElements }} of total
-  {{ datos.totalElements }} registers
-</h3>
+  <h3 class="resultado">
+    Showing {{ oPage.numberOfElements }} of total
+    {{ oPage.totalElements }} registers
+  </h3>
 
-<div class="card flex justify-content-center">
-  <p-paginator
-    (onPageChange)="onPageChange($event)"
-    [first]="first"
-    [rows]="rows"
-    [totalRecords]="datos.totalElements"
-    [rowsPerPageOptions]="[10, 20, 30]"
-  ></p-paginator>
+  <div class="card flex justify-content-center">
+    <p-paginator
+      (onPageChange)="onPageChang($event)"
+      [first]="oPaginatorState.first!"
+      [rows]="oPaginatorState.rows!"
+      [totalRecords]="oPage.totalElements"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    ></p-paginator>
+  </div>
 </div>

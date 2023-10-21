@@ -18,6 +18,9 @@ import { AdminUserPlistRoutedComponent } from './components/user/admin-user-plis
 import { AdminUserPlistUnroutedComponent } from './components/user/admin-user-plist-unrouted/admin-user-plist-unrouted.component';
 import { AdminThreadPlistRoutedComponent } from './components/thread/admin-thread-plist-routed/admin-thread-plist-routed.component';
 import { AdminThreadPlistUnroutedComponent } from './components/thread/admin-thread-plist-unrouted/admin-thread-plist-unrouted.component';
+import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-plist-routed/admin-reply-plist-routed.component';
+import { AdminReplyPlistUnroutedComponent } from './components/reply/admin-reply-plist-unrouted/admin-reply-plist-unrouted.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
@@ -37,7 +40,9 @@ import { MenubarModule } from 'primeng/menubar';
     AdminUserPlistRoutedComponent,
     AdminUserPlistUnroutedComponent,
     AdminThreadPlistRoutedComponent,
-    AdminThreadPlistUnroutedComponent
+    AdminThreadPlistUnroutedComponent,
+    AdminReplyPlistRoutedComponent,
+    AdminReplyPlistUnroutedComponent
   ],
   imports: [
     BrowserModule,

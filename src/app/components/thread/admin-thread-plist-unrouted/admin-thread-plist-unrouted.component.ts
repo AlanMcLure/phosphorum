@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PaginatorState } from 'primeng/paginator';
+import { IUserPage } from 'src/app/model/model.interface';
 
 @Component({
   selector: 'app-admin-thread-plist-unrouted',
@@ -8,12 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminThreadPlistUnroutedComponent implements OnInit {
 
-  datos: any = [];
-  first: number = 0;
-  rows: number = 10;
-  page: number = 0;
+  oPage: any = [];
   orderField: string = "id";
   orderDirection: string = "asc";
+  oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  status: HttpErrorResponse | null = null;
 
   constructor(private oHttpClient: HttpClient) {
     
@@ -24,21 +25,22 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get("http://localhost:8083/thread" + "?size=" + this.rows + "&page=" + this.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
-      next: (data: any) => {
-        this.datos = data;
+    this.oHttpClient.get<IUserPage>("http://localhost:8083/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+      next: (data: IUserPage) => {
+        this.oPage = data;
+        this.oPaginatorState.pageCount = data.totalPages;
+        console.log(this.oPaginatorState);
       },
-      error: (error: any) => {
-        this.datos = null;
-        console.log(error);
+      error: (error: HttpErrorResponse) => {
+        this.oPage.error = error;
+        this.status = error;
       }
     })
   }
 
-  onPageChange(event: any) {
-    this.first = event.first;
-    this.rows = event.rows;
-    this.page = event.page;
+  onPageChang(event: PaginatorState) {
+    this.oPaginatorState.rows = event.rows;
+    this.oPaginatorState.page = event.page;
     this.getPage();
   }
 

@@ -1,0 +1,22 @@
+.tabla {
+  margin-top: 20px;
+}
+
+.resultado {
+  text-align: center;
+}
+
+.card.tabla tr {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none; /* Elimina el subrayado predeterminado */
+  font-weight: normal; /* Establece el peso de la fuente a normal (no negrita) */
+  color: #000;
+  transition: font-weight 0.3s; /* Agrega una transición suave de 0.3 segundos al cambio de peso de la fuente */
+}
+
+a:hover {
+  font-weight: bold; /* Cambia el peso de la fuente a negrita al hacer hover sobre el enlace */
+}
