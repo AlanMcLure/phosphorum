@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
-import { IUserPage } from 'src/app/model/model.interface';
+import { IUserPage } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-thread-plist-unrouted',

@@ -1,17 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-
-interface IUser {
-  id: number;
-  name: string;
-  surname: string;
-  lastname: string;
-  email: string;
-  username: string;
-  role: boolean;
-  threads: number;
-  replies: number
-}
+import { IUser } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-user-detail-unrouted',
@@ -23,7 +12,9 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
  
   @Input() id: number = 1;
 
-  datos: IUser = { id: 0, name: "", surname: "", lastname: "", email: "", username: "", role: false, threads: 0, replies: 0 };
+  textoDeEntrada: string = "";
+  oUser: IUser | null = null;
+  status: HttpErrorResponse | null = null;
   
 
   constructor(
@@ -35,18 +26,36 @@ export class AdminUserDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {    
-    this.oHttpClient.get("http://localhost:8083/user/" + this.id).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        this.datos = data;
+    this.oHttpClient.get<IUser>("http://localhost:8083/user/" + this.id).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
       },
       error: (error: any) => {
-        this.id=0;
-        console.log(error);
+        this.status = error;
       }
 
     })
 
+  }
+
+  onTextoDeEntradaChange(): void {
+    const userId = parseInt(this.textoDeEntrada, 10); // Convierte el texto a un número entero
+
+    if (!isNaN(userId)) {
+      // Realiza una solicitud a la API con el ID ingresado
+      this.oHttpClient.get<IUser>("http://localhost:8083/user/" + userId).subscribe({
+      next: (data: IUser) => {
+        this.oUser = data;
+      },
+      error: (error: any) => {
+        this.oUser = null;
+      }
+
+    })
+    } else {
+      // Si el valor no es un número válido, borra los datos
+      this.oUser = null;
+    }
   }
 
 }

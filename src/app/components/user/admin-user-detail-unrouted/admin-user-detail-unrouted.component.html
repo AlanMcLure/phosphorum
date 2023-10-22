@@ -1,48 +1,61 @@
-<h2 *ngIf="id == 0">ERROR</h2>
-<div *ngIf="id > 0">
-  <table>
+<h2 *ngIf="status != null">ERROR: {{ status.message }}</h2>
+<div *ngIf="status == null">
+  <!-- <table>
     <tr>
       <th>Property</th>
       <th>Value</th>
     </tr>
     <tr>
       <td>id</td>
-      <td>{{ datos.id }}</td>
+      <td>{{ oUser.id }}</td>
     </tr>
     <tr>
       <td>name</td>
-      <td>{{ datos.name }}</td>
+      <td>{{ oUser.name }}</td>
     </tr>
     <tr>
       <td>surname</td>
-      <td>{{ datos.surname }}</td>
+      <td>{{ oUser.surname }}</td>
     </tr>
     <tr>
       <td>lastname</td>
-      <td>{{ datos.lastname }}</td>
+      <td>{{ oUser.lastname }}</td>
     </tr>
     <tr>
       <td>email</td>
-      <td>{{ datos.email }}</td>
+      <td>{{ oUser.email }}</td>
     </tr>
     <tr>
       <td>username</td>
-      <td>{{ datos.username }}</td>
+      <td>{{ oUser.username }}</td>
     </tr>
     <tr>
       <td>role</td>
       <td>
-        <span *ngIf="datos.role == true">Admin</span>
-        <span *ngIf="datos.role == false">User</span>
+        <span *ngIf="oUser.role == true">Admin</span>
+        <span *ngIf="oUser.role == false">User</span>
       </td>
     </tr>
-  </table>
-  <div class="card">
-    <div class="image"></div>
-    <div class="card-info">
-      <span>George Johnson</span>
-      <p>Support Specialist</p>
+  </table> -->
+  <div class="container">
+    <input
+      class="input"
+      [(ngModel)]="textoDeEntrada"
+      (ngModelChange)="onTextoDeEntradaChange()"
+      placeholder="Ingrese un ID de usuario"
+      [class.input-error]="oUser === null && textoDeEntrada !== ''"
+    />
+    <div class="card" *ngIf="oUser">
+      <div class="image"></div>
+      <div class="card-info">
+        <span>{{ oUser.name }} {{ oUser.surname }}</span>
+        <p>@{{ oUser.username }}</p>
+        <p>{{ oUser.email }}</p>
+      </div>
+      <div class="role">{{ oUser.role ? "Admin" : "User" }}</div>
     </div>
-    <a href="#" class="button">Folow</a>
+    <p *ngIf="oUser === null">
+      No se encontró ningún usuario para el ID ingresado
+    </p>
   </div>
 </div>
