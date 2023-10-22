@@ -32,7 +32,7 @@
       class="input"
       [(ngModel)]="textoDeEntrada"
       (ngModelChange)="onTextoDeEntradaChange()"
-      placeholder="Ingrese un ID de thread"
+      placeholder="Ingrese un ID de reply"
       [class.input-error]="oReply === null && textoDeEntrada !== ''"
     />
     <div class="card" *ngIf="oReply">
