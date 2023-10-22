@@ -1,38 +1,60 @@
-<h2 *ngIf="id == 0">ERROR</h2>
-<div *ngIf="id > 0">
-  <table>
+<h2 *ngIf="status != null">ERROR: {{ status.message }}</h2>
+<div *ngIf="status == null">
+  <!-- <table>
     <tr>
       <th>Property</th>
       <th>Value</th>
     </tr>
     <tr>
       <td>id</td>
-      <td>{{ datos.id }}</td>
+      <td>{{ oThread?.id }}</td>
     </tr>
     <tr>
       <td>title</td>
-      <td>{{ datos.title }}</td>
+      <td>{{ oThread?.title }}</td>
     </tr>
     <tr>
       <td>user</td>
       <td>
-        <a [routerLink]="['/admin', 'user', 'view', datos.user.id]"
-          >{{ datos.user.name }} {{ datos.user.surname }}</a
+        <a [routerLink]="['/admin', 'user', 'view', oThread?.user?.id]"
+          >{{ oThread?.user?.name }} {{ oThread?.user?.surname }}</a
         >
       </td>
     </tr>
-  </table>
-  <div class="card">
-    <div class="header">
-      <div class="image"></div>
-      <div>
-        <p class="name">John Doe</p>
+  </table> -->
+  <div class="container">
+    <input
+      class="input"
+      [(ngModel)]="textoDeEntrada"
+      (ngModelChange)="onTextoDeEntradaChange()"
+      placeholder="Ingrese un ID de thread"
+      [class.input-error]="oThread === null && textoDeEntrada !== ''"
+    />
+    <div class="card" *ngIf="oThread">
+      <div class="header">
+        <div class="image"></div>
+        <div>
+          <p class="name">
+            <a [routerLink]="['/admin', 'user', 'view', oThread.user.id]">
+              <span class="full-name"
+                >{{ oThread.user.name }} {{ oThread.user.surname }}
+                {{ oThread.user.lastname }}</span
+              >
+              <span class="username">@{{ oThread.user.username }}</span>
+            </a>
+          </p>
+          <p class="message">
+            {{ oThread.title }}
+          </p>
+        </div>
       </div>
-    </div>
 
-    <p class="message">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-      voluptatem alias ut provident sapiente repellendus.
+      <!-- <p class="message">
+        {{ oThread.title }}
+      </p> -->
+    </div>
+    <p *ngIf="oThread === null && textoDeEntrada !== ''">
+      No se encontró ningún usuario para el ID ingresado
     </p>
   </div>
 </div>

@@ -1,29 +1,66 @@
-<h2 *ngIf="id==0">ERROR</h2>
-<div *ngIf="id>0">
-  <table>
+<h2 *ngIf="status != null">ERROR: {{ status.message }}</h2>
+<div *ngIf="status == null">
+  <!-- <table>
     <tr>
       <th>Property</th>
       <th>Value</th>
     </tr>
     <tr>
       <td>id</td>
-      <td>{{datos.id}}</td>
+      <td>{{oReply.id}}</td>
     </tr>
     <tr>
       <td>title</td>
-      <td>{{datos.title}}</td>
+      <td>{{oReply.title}}</td>
     </tr>
     <tr>
       <td>body</td>
-      <td>{{datos.body}}</td>
+      <td>{{oReply.body}}</td>
     </tr>
     <tr>
       <td>user</td>
-      <td> <a [routerLink]="['/admin','user','view',datos.user.id]">{{datos.user.name}} {{datos.user.surname}}</a> </td>
+      <td> <a [routerLink]="['/admin','user','view',oReply.user.id]">{{oReply.user.name}} {{oReply.user.surname}}</a>
+      </td>
     </tr>
     <tr>
       <td>thread</td>
-      <td> <a [routerLink]="['/admin','thread','view',datos.thread.id]">{{datos.thread.title}}</a> </td>
+      <td> <a [routerLink]="['/admin','thread','view',oReply.thread.id]">{{oReply.thread.title}}</a> </td>
     </tr>
-  </table>
+  </table> -->
+  <div class="container">
+    <input
+      class="input"
+      [(ngModel)]="textoDeEntrada"
+      (ngModelChange)="onTextoDeEntradaChange()"
+      placeholder="Ingrese un ID de thread"
+      [class.input-error]="oReply === null && textoDeEntrada !== ''"
+    />
+    <div class="card" *ngIf="oReply">
+      <div class="header">
+        <div class="image"></div>
+        <div>
+          <p class="name">
+            <a [routerLink]="['/admin', 'user', 'view', oReply.user.id]">
+              {{ oReply.user.name }} {{ oReply.user.surname }}
+              {{ oReply.user.lastname }}
+            </a>
+          </p>
+          <p class="thread">
+            <a [routerLink]="['/admin', 'thread', 'view', oReply.thread.id]">
+              {{ oReply.thread.title }}
+            </a>
+          </p>
+          <p class="message">
+            {{ oReply.title }}
+          </p>
+          <p class="message">
+            {{ oReply.body }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <p *ngIf="oReply === null && textoDeEntrada !== ''">
+      No se encontró ningún usuario para el ID ingresado
+    </p>
+  </div>
 </div>
