@@ -7,6 +7,7 @@
           <th (click)="doOrder('id')">ID</th>
           <th (click)="doOrder('title')">Title</th>
           <th (click)="doOrder('user')">User</th>
+          <th (click)="doOrder('replies')">Replies</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-u>
@@ -18,6 +19,7 @@
               {{ u.user.username }}
             </a>
           </td>
+          <td>{{ u.replies }}</td>
         </tr>
       </ng-template>
     </p-table>

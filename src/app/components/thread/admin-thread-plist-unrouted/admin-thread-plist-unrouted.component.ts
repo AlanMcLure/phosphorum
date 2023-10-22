@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
-import { IUserPage } from 'src/app/model/model.interfaces';
+import { IThreadPage } from 'src/app/model/model.interfaces';
 
 @Component({
   selector: 'app-admin-thread-plist-unrouted',
@@ -25,8 +25,8 @@ export class AdminThreadPlistUnroutedComponent implements OnInit {
   }
 
   getPage(): void {
-    this.oHttpClient.get<IUserPage>("http://localhost:8083/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
-      next: (data: IUserPage) => {
+    this.oHttpClient.get<IThreadPage>("http://localhost:8083/thread" + "?size=" + this.oPaginatorState.rows + "&page=" + this.oPaginatorState.page + "&sort=" + this.orderField + "," + this.orderDirection).subscribe({
+      next: (data: IThreadPage) => {
         this.oPage = data;
         this.oPaginatorState.pageCount = data.totalPages;
         console.log(this.oPaginatorState);

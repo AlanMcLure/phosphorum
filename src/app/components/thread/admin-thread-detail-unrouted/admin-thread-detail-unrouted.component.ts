@@ -25,8 +25,8 @@ export class AdminThreadDetailUnroutedComponent implements OnInit {
   }
 
   getOne(): void {
-    this.oHttpClient.get("http://localhost:8083/thread/" + this.id).subscribe({
-      next: (data: any) => {
+    this.oHttpClient.get<IThread>("http://localhost:8083/thread/" + this.id).subscribe({
+      next: (data: IThread) => {
         this.oThread = data;
       },
       error: (error: any) => {
