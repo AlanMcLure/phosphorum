@@ -14,10 +14,11 @@
               <th (click)="doOrder('body')">Body</th>
               <th (click)="doOrder('user')">User</th>
               <th (click)="doOrder('thread')">Thread</th>
+              <th>Acciones</th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-u>
-            <tr [routerLink]="['/admin/reply/view', u.id]">
+            <tr>
               <td>{{ u.id }}</td>
               <td>{{ u.title }}</td>
               <td>{{ u.body }}</td>
@@ -30,6 +31,35 @@
                 <a [routerLink]="['/admin/thread/view', u.thread.id]">
                   {{ u.thread.title }}
                 </a>
+              </td>
+              <td>
+                <div
+                  class="btn-group btn-group-sm"
+                  role="group"
+                  aria-label="Basic example"
+                >
+                  <button
+                    class="btn btn-primary"
+                    [routerLink]="['/admin', 'reply', 'view', u.id]"
+                  >
+                    <i class="pi pi-eye"></i>
+                  </button>
+                  <button class="btn btn-primary" (click)="goToView(u)">
+                    <i class="pi pi-arrow-circle-up"></i>
+                  </button>
+                  <button
+                    class="btn btn-warning"
+                    [routerLink]="['/admin', 'reply', 'edit', u.id]"
+                  >
+                    <i class="pi pi-pencil"></i>
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="openDeleteConfirmationDialog(u.id)"
+                  >
+                    <i class="pi pi-trash"></i>
+                  </button>
+                </div>
               </td>
             </tr>
           </ng-template>
