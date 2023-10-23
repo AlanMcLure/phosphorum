@@ -1,7 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
-import { IUserPage } from 'src/app/model/model.interfaces';
+import { IUser, IUserPage } from 'src/app/model/model.interfaces';
+import { AdminUserDetailUnroutedComponent } from '../admin-user-detail-unrouted/admin-user-detail-unrouted.component';
 
 @Component({
   selector: 'app-admin-user-plist-unrouted',
@@ -16,9 +19,11 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
   oPaginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
 
-  constructor(private oHttpClient: HttpClient) {
-    
-  }
+  constructor(
+    private oHttpClient: HttpClient,
+    public dialogService: DialogService,
+    public messageService: MessageService
+  ) { }
 
   ngOnInit() {
     this.getPage();
@@ -54,4 +59,38 @@ export class AdminUserPlistUnroutedComponent implements OnInit {
     this.getPage();
   }
 
+  ref: DynamicDialogRef | undefined;
+
+  goToView(u: IUser) {
+    this.ref = this.dialogService.open(AdminUserDetailUnroutedComponent, {
+      data: {
+        id: u.id
+      },
+      header: 'View of user',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: false
+    });
+  }
+
+  // Este método manejará el borrado de usuarios
+  deleteUser(userId: number) {
+    // Realiza una solicitud de borrado al servidor
+    this.oHttpClient.delete(`http://localhost:8083/user/${userId}`)
+      .subscribe({
+        next: () => {
+          // Borrado exitoso
+          console.log(`Usuario con ID ${userId} borrado correctamente.`);
+          
+          // Luego de borrar el usuario, puedes actualizar la lista de usuarios volviendo a llamar a getPage()
+          this.getPage();
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error(`Error al borrar el usuario con ID ${userId}.`, error);
+          // Manejo de errores, muestra notificaciones o toma acciones apropiadas
+        }
+      });
+  }
+  
 }

@@ -38,13 +38,13 @@
     </tr>
   </table> -->
   <div class="container">
-    <input
+    <!-- <input
       class="input"
       [(ngModel)]="textoDeEntrada"
       (ngModelChange)="onTextoDeEntradaChange()"
       placeholder="Ingrese un ID de usuario"
       [class.input-error]="oUser === null && textoDeEntrada !== ''"
-    />
+    /> -->
     <div class="card" *ngIf="oUser">
       <div class="image"></div>
       <div class="card-info">

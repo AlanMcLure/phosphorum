@@ -6,6 +6,6 @@
   text-align: center;
 }
 
-.card.tabla tr {
+.tabla th {
   cursor: pointer;
 }

@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
@@ -20,11 +18,21 @@ import { AdminThreadPlistRoutedComponent } from './components/thread/admin-threa
 import { AdminThreadPlistUnroutedComponent } from './components/thread/admin-thread-plist-unrouted/admin-thread-plist-unrouted.component';
 import { AdminReplyPlistRoutedComponent } from './components/reply/admin-reply-plist-routed/admin-reply-plist-routed.component';
 import { AdminReplyPlistUnroutedComponent } from './components/reply/admin-reply-plist-unrouted/admin-reply-plist-unrouted.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
-import { MenubarModule } from 'primeng/menubar';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+// import { AdminUserNewRoutedComponent } from './components/user/admin-user-new-routed/admin-user-new-routed.component';
+// import { AdminUserFormUnroutedComponent } from './components/user/admin-user-form-unrouted/admin-user-form-unrouted.component';
+// import { AdminUserEditRoutedComponent } from './components/user/admin-user-edit-routed/admin-user-edit-routed.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -52,9 +60,21 @@ import { MenubarModule } from 'primeng/menubar';
     BrowserAnimationsModule,
     PaginatorModule,
     TableModule,
-    MenubarModule
+    DynamicDialogModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    DialogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
