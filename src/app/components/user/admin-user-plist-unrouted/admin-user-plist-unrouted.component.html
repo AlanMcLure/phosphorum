@@ -53,7 +53,10 @@
                   >
                     <i class="pi pi-pencil"></i>
                   </button>
-                  <button class="btn btn-danger" (click)="deleteUser(u.id)">
+                  <button
+                    class="btn btn-danger"
+                    (click)="openDeleteConfirmationDialog(u.id)"
+                  >
                     <i class="pi pi-trash"></i>
                   </button>
                 </div>

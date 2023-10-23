@@ -33,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AdminThreadPlistRoutedComponent,
     AdminThreadPlistUnroutedComponent,
     AdminReplyPlistRoutedComponent,
-    AdminReplyPlistUnroutedComponent
+    AdminReplyPlistUnroutedComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
