@@ -1,37 +1,44 @@
 <h2 *ngIf="status != null">ERROR: {{ status.message }}</h2>
 <div *ngIf="status == null">
-  <div class="card tabla">
-    <p-table [value]="oPage.content" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th (click)="doOrder('id')">ID</th>
-          <th (click)="doOrder('title')">Title</th>
-          <th (click)="doOrder('body')">Body</th>
-          <th (click)="doOrder('user')">User</th>
-          <th (click)="doOrder('thread')">Thread</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-u>
-        <tr [routerLink]="['/admin/reply/view', u.id]">
-          <td>{{ u.id }}</td>
-          <td>{{ u.title }}</td>
-          <td>{{ u.body }}</td>
-          <td>
-            <a [routerLink]="['/admin/user/view', u.user.id]">
-              {{ u.user.username }}
-            </a>
-          </td>
-          <td>
-            <a [routerLink]="['/admin/thread/view', u.thread.id]">
-              {{ u.thread.title }}
-            </a>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+  <div class="container mt-4 tabla">
+    <div class="row">
+      <div class="col">
+        <p-table
+          [value]="oPage.content"
+          [tableStyle]="{ 'min-width': '50rem' }"
+        >
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th (click)="doOrder('id')">ID</th>
+              <th (click)="doOrder('title')">Title</th>
+              <th (click)="doOrder('body')">Body</th>
+              <th (click)="doOrder('user')">User</th>
+              <th (click)="doOrder('thread')">Thread</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-u>
+            <tr [routerLink]="['/admin/reply/view', u.id]">
+              <td>{{ u.id }}</td>
+              <td>{{ u.title }}</td>
+              <td>{{ u.body }}</td>
+              <td>
+                <a [routerLink]="['/admin/user/view', u.user.id]">
+                  {{ u.user.username }}
+                </a>
+              </td>
+              <td>
+                <a [routerLink]="['/admin/thread/view', u.thread.id]">
+                  {{ u.thread.title }}
+                </a>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
 
-  <h3 class="resultado">
+  <h3 class="resultado mt-4 mb-4">
     Showing {{ oPage.numberOfElements }} of total
     {{ oPage.totalElements }} registers
   </h3>
